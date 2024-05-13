@@ -56,12 +56,18 @@ main{
         color: $secundary-text;
 
         b{
-           background: -webkit-linear-gradient( 90deg, #ffff, $primary-color, ); 
+           background: -webkit-linear-gradient( 180deg, $secundary-color, $primary-color, ); 
            -webkit-background-clip: text;
            -webkit-text-fill-color: transparent;
            font-style: normal;
         }
     }
+}
+
+.cta-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
