@@ -2,13 +2,15 @@ import { Component, signal } from '@angular/core';
 import { BtnPrimaryComponent } from '../btn-primary/btn-primary.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NewsletterService } from '../../services/newsletter.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'newsletter-form',
   standalone: true,
   imports: [
     BtnPrimaryComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     NewsletterService
@@ -19,6 +21,7 @@ import { NewsletterService } from '../../services/newsletter.service';
 export class NewsletterFormComponent {
   newsletterForm!: FormGroup;
   loading = signal(false);
+  showThankYouMessage = false;
 
   constructor(private service: NewsletterService) {
     this.newsletterForm = new FormGroup({
@@ -34,9 +37,14 @@ export class NewsletterFormComponent {
         next: () => {
           this.newsletterForm.reset();
           this.loading.set(false);
+          this.showThankYouMessage = true;
         },
         error: () => this.loading.set(false)
       })
     }
+  }
+
+  closePopup() {
+    this.showThankYouMessage = false;
   }
 }

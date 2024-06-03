@@ -5,7 +5,7 @@
         </h3>
         <p>Checkpoint é uma plataforma dedicada a promover os pontos turísticos menos conhecidos de Pernambuco. Nosso objetivo é conectar os viajantes a experiências autênticas e únicas, destacando locais fora do circuito tradicional. Além disso, buscamos apoiar os pequenos comerciantes locais, fortalecendo a economia regional. Com o Checkpoint, os turistas têm a oportunidade de explorar verdadeiramente a riqueza cultural e histórica do estado, indo além dos destinos populares. Inscreva-se para receber atualizações exclusivas e acompanhar as novidades</p>
     </div>
-    <form [formGroup]="newsletterForm">
+    <form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()">
         <label for="name">Nome</label>
         <input id="name" formControlName="name">
         <label for="email">E-mail</label>
@@ -13,9 +13,12 @@
         <btn-primary
          btn-text="Inscreva-se"
          variant="secundary"
-         (submit)="onSubmit()"
          [disabled]="!newsletterForm.valid"
          [loading]="loading()"
          ></btn-primary>
     </form>
+    <div *ngIf="showThankYouMessage" class="thank-you-popup">
+        <p>Obrigado por ajudar nosso projeto</p>
+        <button (click)="closePopup()">Fechar</button>
+    </div>
 </section>
